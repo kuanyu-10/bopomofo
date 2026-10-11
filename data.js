@@ -64,27 +64,14 @@ const GROUP_TITLES = [
 
 /* ================================================================
    STEP 03：五声調の基本データ
-   やや違う例語を同じ音「ma」で並べ、意味の差を比較する。
-   軽声は単独だと不自然になりやすいため「好嗎？」で読み上げる。
-   speechText はブラウザ音声合成に渡す中国語の文字列。
+   同じ音節「ba」で声調を変え、意味と音の差を比べる。
+   軽声の「吧」は単独ではなく「走吧」の語尾を聞く。
+   speechText はブラウザの中国語音声合成に渡す文字列。
 ================================================================ */
 const TONE_EXAMPLES = [
-  {name:"第1声", shape:"高く平ら", zhuyin:"ㄇㄚ", word:"媽", meaning:"お母さん", speechText:"媽"},
-  {name:"第2声", shape:"上がる", zhuyin:"ㄇㄚˊ", word:"麻", meaning:"麻（あさ）", speechText:"麻"},
-  {name:"第3声", shape:"低く沈む", zhuyin:"ㄇㄚˇ", word:"馬", meaning:"馬（うま）", speechText:"馬"},
-  {name:"第4声", shape:"強く下がる", zhuyin:"ㄇㄚˋ", word:"罵", meaning:"叱る", speechText:"罵"},
-  {name:"軽声", shape:"軽く短く", zhuyin:"˙ㄇㄚ", word:"嗎", meaning:"疑問を表す（～か）", speechText:"好嗎？", note:"「好嗎？」の最後を聞く"}
-];
-
-/* ================================================================
-   STEP 04：声調変化（変調）の学習データ
-   written：単語の基本の声調表記
-   spoken ：連続した時の発音を注音で示した学習用の目安
-   ※ これを辞書の表記そのものに置き換えるものではない。
-================================================================ */
-const SANDHI_EXAMPLES = [
-  {word:"你好", meaning:"こんにちは", written:"ㄋㄧˇ ㄏㄠˇ", spoken:"ㄋㄧˊ ㄏㄠˇ", rule:"第3声＋第3声：前が第2声に近くなる。"},
-  {word:"不對", meaning:"違います", written:"ㄅㄨˋ ㄉㄨㄟˋ", spoken:"ㄅㄨˊ ㄉㄨㄟˋ", rule:"『不』＋第4声：不が第2声になる。"},
-  {word:"一定", meaning:"必ず", written:"ㄧ ㄉㄧㄥˋ", spoken:"ㄧˊ ㄉㄧㄥˋ", rule:"『一』＋第4声：一が第2声になる。"},
-  {word:"一天", meaning:"一日", written:"ㄧ ㄊㄧㄢ", spoken:"ㄧˋ ㄊㄧㄢ", rule:"『一』＋第1声：一が第4声になる。"}
+  {name:"第1声", shape:"高く平ら", zhuyin:"ㄅㄚ", word:"八", meaning:"八（はち）", speechText:"八"},
+  {name:"第2声", shape:"上がる", zhuyin:"ㄅㄚˊ", word:"拔", meaning:"引き抜く", speechText:"拔"},
+  {name:"第3声", shape:"低く沈む", zhuyin:"ㄅㄚˇ", word:"把", meaning:"つかむ", speechText:"把"},
+  {name:"第4声", shape:"強く下がる", zhuyin:"ㄅㄚˋ", word:"爸", meaning:"お父さん", speechText:"爸"},
+  {name:"軽声", shape:"軽く短く", zhuyin:"˙ㄅㄚ", word:"吧", meaning:"～しよう（語尾）", speechText:"走吧", note:"「走吧」の最後を聞く"}
 ];

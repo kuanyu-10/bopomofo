@@ -98,7 +98,7 @@ h1 { font-size: clamp(30px, 4vw, 42px); letter-spacing: .07em; margin: 0 0 8px; 
 
 
 /* ================================================================
-   STEP 07：声調の基本・変調のカード
+   STEP 07：五声調カード
    色は白／黒／グレーに統一。モバイルでは2列または1列。
 ================================================================ */
 .learning-section { margin-top: 40px; padding-top: 23px; border-top: 1px solid #000; }
@@ -106,7 +106,7 @@ h1 { font-size: clamp(30px, 4vw, 42px); letter-spacing: .07em; margin: 0 0 8px; 
 .learning-section > p { margin: 6px 0; font-size: 14px; line-height: 1.7; }
 .tone-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; margin-top: 18px; }
 .tone-card { min-width: 0; padding: 14px 6px; border: 1.5px solid #000; background: #fff; color: #000; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
-.tone-card:hover, .sandhi-play:hover { background: #f3f3f3; }
+.tone-card:hover { background: #f3f3f3; }
 .tone-name { font-size: 13px; font-weight: 700; }
 .tone-zhuyin { font-size: clamp(21px,2.5vw,30px); font-weight: 700; line-height: 1.35; }
 .tone-word { font-size: 25px; }
@@ -114,15 +114,5 @@ h1 { font-size: clamp(30px, 4vw, 42px); letter-spacing: .07em; margin: 0 0 8px; 
 .tone-meaning { font-size: 12px; }
 .tone-play { margin-top: auto; padding-top: 7px; font-size: 12px; font-weight: 700; text-decoration: underline; }
 .tone-note { font-size: 10px; }
-.sandhi-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; margin-top: 18px; }
-.sandhi-card { border: 1.5px solid #000; padding: 16px; min-width: 0; }
-.sandhi-word { font-size: 20px; margin: 0 0 11px; }
-.sandhi-meaning { font-size: 13px; font-weight: 400; }
-.sandhi-comparison { display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 8px 10px; margin: 0; }
-.sandhi-comparison dt { font-size: 12px; font-weight: 600; }
-.sandhi-comparison dd { margin: 0; font-size: 15px; font-weight: 700; overflow-wrap: anywhere; }
-.sandhi-rule { margin: 13px 0 0; font-size: 12px; line-height: 1.6; }
-.sandhi-play { border: 1px solid #000; background: #fff; margin-top: 11px; font-size: 12px; padding: 8px 14px; }
 @media (max-width: 850px) { .tone-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
-@media (max-width: 600px) { .tone-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .sandhi-grid { grid-template-columns: 1fr; } }
-@media (max-width: 370px) { .sandhi-comparison { grid-template-columns: 1fr; gap: 2px; } .sandhi-comparison dd { margin-bottom: 8px; } }
+@media (max-width: 600px) { .tone-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }

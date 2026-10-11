@@ -158,32 +158,6 @@ function renderToneCards() {
 }
 
 /* ================================================================
-   STEP 09：変調の比較カード
-   元の声調と変化後の発音の目安を区別して表示する。
-================================================================ */
-function renderSandhiCards() {
-  const container = document.getElementById("sandhi-cards");
-  container.replaceChildren();
-  SANDHI_EXAMPLES.forEach(item => {
-    const card = document.createElement("article");
-    card.className = "sandhi-card";
-    const heading = makeTextElement("h3", "sandhi-word", item.word);
-    heading.appendChild(makeTextElement("span", "sandhi-meaning", ` ／ ${item.meaning}`));
-    const text = document.createElement("dl");
-    text.className = "sandhi-comparison";
-    for (const [key, value] of [["基本の表記", item.written], ["発音の目安", item.spoken]]) {
-      text.append(makeTextElement("dt", "", key), makeTextElement("dd", "", value));
-    }
-    const info = makeTextElement("p", "sandhi-rule", item.rule);
-    const listen = makeTextElement("button", "sandhi-play", "▶ 単語を聞く");
-    listen.type = "button";
-    listen.addEventListener("click", () => speakMandarin(item.word));
-    card.append(heading, text, info, listen);
-    container.appendChild(card);
-  });
-}
-
-/* ================================================================
    STEP 04：クイズの問題作成
    1）37文字をランダムに並べる → 最初の10件を使用
    2）同じ種類を優先して3つの不正解候補を選ぶ
@@ -294,5 +268,4 @@ document.getElementById("restart-button").addEventListener("click", startQuiz);
 ================================================================ */
 renderSymbolTable();
 renderToneCards();
-renderSandhiCards();
 showPage("home");
