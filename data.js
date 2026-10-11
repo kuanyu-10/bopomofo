@@ -65,7 +65,7 @@ const GROUP_TITLES = [
 /* ================================================================
    STEP 03：五声調の基本データ
    同じ音節「ba」で声調を変え、意味と音の差を比べる。
-   軽声の「吧」は単独ではなく「走吧」の語尾を聞く。
+   軽声の「吧」も文字だけを読み上げる（ブラウザごとの音声差に注意）。
    speechText はブラウザの中国語音声合成に渡す文字列。
 ================================================================ */
 const TONE_EXAMPLES = [
@@ -73,5 +73,5 @@ const TONE_EXAMPLES = [
   {name:"第2声", shape:"上がる", zhuyin:"ㄅㄚˊ", word:"拔", meaning:"引き抜く", speechText:"拔"},
   {name:"第3声", shape:"低く沈む", zhuyin:"ㄅㄚˇ", word:"把", meaning:"つかむ", speechText:"把"},
   {name:"第4声", shape:"強く下がる", zhuyin:"ㄅㄚˋ", word:"爸", meaning:"お父さん", speechText:"爸"},
-  {name:"軽声", shape:"軽く短く", zhuyin:"˙ㄅㄚ", word:"吧", meaning:"～しよう（語尾）", speechText:"走吧", note:"「走吧」の最後を聞く"}
+  {name:"軽声", shape:"軽く短く", zhuyin:"˙ㄅㄚ", word:"吧", meaning:"～しよう（語尾）", speechText:"吧"}
 ];
