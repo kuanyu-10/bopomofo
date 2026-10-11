@@ -57,7 +57,9 @@ function speakMandarin(text, label = text) {
   }
   const speech = new SpeechSynthesisUtterance(text);
   speech.lang = "zh-TW";
-  speech.rate = 0.85;
+  // 日本語話者が聞き取りやすいよう、例単語と声調練習のTTSを少し遅くする。
+  // 教育部の37個のWAVファイルには適用されない。
+  speech.rate = 0.75;
   const voices = window.speechSynthesis.getVoices();
   const taiwanVoice = voices.find(v => v.lang.toLowerCase().replace("_", "-") === "zh-tw");
   if (taiwanVoice) speech.voice = taiwanVoice;
