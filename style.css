@@ -72,8 +72,6 @@ h1 { font-size: clamp(30px, 4vw, 42px); letter-spacing: .07em; margin: 0 0 8px; 
 /* ================================================================
    STEP 05：フッター＆レスポンシブ対応
 ================================================================ */
-.audio-message { text-align: center; min-height: 1.5em; padding: 0 18px; margin: 0 0 18px; font-size: 13px; }
-.audio-message:empty { min-height: 0; margin: 0; }
 .site-footer { border-top: 1px solid #000; padding: 21px 18px 28px; text-align: center; font-size: 12px; }
 .site-footer p { margin: 5px 0; }
 @media (max-width: 940px) { .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

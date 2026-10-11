@@ -31,11 +31,15 @@ document.getElementById("home-logo").addEventListener("click", event => {
    左：教育部のWAVをHTMLAudioElementで再生
    右：ブラウザのSpeechSynthesis APIで中国語の例単語を読む
 ================================================================ */
-const audioMessage = document.getElementById("audio-message");
+// 発音メッセージは画面に出さない。失敗時だけ開発者コンソールに記録する。
 let currentAudio = null;
 
 function stopPreviousSounds() {
-  if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; currentAudio = null; }
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio = null;
+  }
   if ("speechSynthesis" in window) window.speechSynthesis.cancel();
 }
 
@@ -43,16 +47,23 @@ function playSymbol(item) {
   stopPreviousSounds();
   const sound = new Audio(`audio/${item.audio}`);
   currentAudio = sound;
-  audioMessage.textContent = `「${item.symbol}」の発音を再生中`;
-  sound.addEventListener("ended", () => { if (currentAudio === sound) audioMessage.textContent = ""; });
-  sound.addEventListener("error", () => { audioMessage.textContent = `音声が開けません：audio/${item.audio}`; });
-  sound.play().catch(() => { audioMessage.textContent = "音声を再生できません。WAVファイルを確認してください。"; });
+  sound.addEventListener("ended", () => {
+    if (currentAudio === sound) currentAudio = null;
+  });
+  sound.addEventListener("error", () => {
+    if (currentAudio === sound) currentAudio = null;
+    console.warn(`音声ファイルを読み込めません：audio/${item.audio}`);
+  });
+  sound.play().catch(error => {
+    if (currentAudio === sound) currentAudio = null;
+    console.warn("WAVファイルの再生に失敗しました。", error);
+  });
 }
 
-function speakMandarin(text, label = text) {
+function speakMandarin(text) {
   stopPreviousSounds();
   if (!("speechSynthesis" in window)) {
-    audioMessage.textContent = "このブラウザは音声合成に対応していません。";
+    console.warn("このブラウザは音声合成に対応していません。");
     return;
   }
   const speech = new SpeechSynthesisUtterance(text);
@@ -63,9 +74,11 @@ function speakMandarin(text, label = text) {
   const voices = window.speechSynthesis.getVoices();
   const taiwanVoice = voices.find(v => v.lang.toLowerCase().replace("_", "-") === "zh-tw");
   if (taiwanVoice) speech.voice = taiwanVoice;
-  audioMessage.textContent = `「${label}」を読み上げ中（中国語音声が必要です）`;
-  speech.onend = () => { audioMessage.textContent = ""; };
-  speech.onerror = () => { audioMessage.textContent = "音声合成に失敗しました。OSの中国語音声を確認してください。"; };
+  speech.onerror = event => {
+    if (event.error !== "canceled" && event.error !== "interrupted") {
+      console.warn("中国語音声合成に失敗しました。", event.error);
+    }
+  };
   window.speechSynthesis.speak(speech);
 }
 
@@ -154,7 +167,7 @@ function renderToneCards() {
       makeTextElement("span", "tone-play", "▶ 聞く")
     );
     if (item.note) card.appendChild(makeTextElement("span", "tone-note", item.note));
-    card.addEventListener("click", () => speakMandarin(item.speechText, item.word));
+    card.addEventListener("click", () => speakMandarin(item.speechText));
     container.appendChild(card);
   });
 }
